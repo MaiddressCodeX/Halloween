@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIHW - ประวัติศาสตร์</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. PRELOADER STYLES --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        #preload-text {
+            color: #ff7518;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-right: 4px solid #ff7518;
+            padding-right: 10px;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        @media (max-width: 768px) { #preload-text { font-size: 1.5rem; } }
+        @keyframes blink-caret { 50% { border-color: transparent } }
+        body.loading { overflow: hidden; }
+
+        /* --- 2. GLOBAL STYLES --- */
+        body {
+            background-color: #050505;
+            color: #d1d1d1;
+            font-family: 'Kanit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .text-orange { color: #ff7518 !important; }
+        .bg-orange { background-color: #ff7518 !important; }
+        .text-purple { color: #9b30ff !important; }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 117, 24, 0.3);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        .navbar-brand { 
+            font-family: 'Kanit', sans-serif !important; 
+            font-weight: 800; font-size: 1.8rem; color: #ff7518 !important; 
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .nav-link { color: #fff !important; margin-left: 15px; transition: 0.3s; font-weight: 300; }
+        .nav-link:hover, .nav-link.active { color: #ff7518 !important; }
+        .custom-toggler { border-color: #ff7518 !important; border-width: 2px; }
+        .toggler-icon-orange { color: #ff7518; font-size: 1.5rem; }
+
+        /* --- PAGE SPECIFIC STYLES --- */
+        .page-header {
+            height: 60vh;
+            /* รูปที่ 1: พื้นหลัง Header */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), #050505), 
+                        url('B/1.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 4px solid #ff7518;
+        }
+
+        .history-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .history-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 2px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .history-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .history-img-container:hover .history-img { transform: scale(1.1); }
+
+        .year-badge {
+            background: #ff7518;
+            color: #000;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px #ff7518;
+        }
+
+        .legend-box {
+            background: #111;
+            border: 2px solid #ff7518;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            margin-top: 50px;
+        }
+        
+        .quote-text {
+            font-style: italic;
+            color: #888;
+            border-left: 4px solid #ff7518;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        footer { background-color: #000; padding: 20px; border-top: 2px solid #ff7518; }
+    </style>
+</head>
+<body class="loading">
+
+    <div id="preloader">
+        <span id="preload-text"></span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">MIHW</a>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars toggler-icon-orange"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="history.html">ประวัติหลอน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="modern.html">ยุคปัจจุบัน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">ผู้จัดทำ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container" data-aos="zoom-in" data-aos-duration="1200">
+            <h1 class="display-2 text-white fw-bold">HISTORY OF HALLOWEEN</h1>
+            <p class="lead text-orange fs-3 fw-light">จาก Samhain สู่คืนปล่อยผี</p>
+        </div>
+    </header>
+
+    <section class="history-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="history-img-container">
+                        <img src="B/2.jpeg" class="history-img" alt="Samhain Bonfire"
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
+                    <span class="year-badge">2,000 ปีก่อน</span>
+                    <h2 class="text-orange mb-3">จุดกำเนิด: เทศกาล Samhain</h2>
+                    <p>
+                        ต้นกำเนิดที่แท้จริงของฮาโลวีนมาจากชาว <strong>เซลติก (Celtic)</strong> โบราณ ซึ่งอาศัยอยู่ในไอร์แลนด์และทางตอนเหนือของฝรั่งเศส
+                    </p>
+                    <p>
+                        พวกเขามีเทศกาลที่เรียกว่า <strong>"Samhain" (ซาวิน)</strong> ซึ่งถือเป็นวันสิ้นสุดฤดูเก็บเกี่ยว และเชื่อว่าเป็นคืนที่ "เส้นกั้นระหว่างโลกคนเป็นและคนตายบางที่สุด" ทำให้พวกเขาก่อกองไฟเพื่อปัดเป่าวิญญาณร้าย
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section bg-dark">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="history-img-container">
+                        <img src="B/3.jpeg" class="history-img" alt="Roman Apples"
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-right">
+                    <span class="year-badge">ยุคจักรวรรดิโรมัน</span>
+                    <h2 class="text-purple mb-3">การผสมผสานของโรมัน</h2>
+                    <p>
+                        เมื่ออาณาจักรโรมันเข้ายึดครอง ประเพณี Samhain จึงถูกผสมผสานเข้ากับเทศกาลของโรมัน โดยเฉพาะวันบูชา <strong>เทพีโพโมนา (Pomona)</strong>
+                    </p>
+                    <p>
+                        สัญลักษณ์ของเทพีโพโมนาคือ <strong>"แอปเปิล"</strong> นี่จึงเป็นที่มาของเกม <strong>"Bobbing for Apples"</strong> (คาบแอปเปิลในถังน้ำ) ที่ยังคงเล่นกันในงานปาร์ตี้ฮาโลวีนจนถึงทุกวันนี้
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-up-right">
+                    <div class="history-img-container">
+                        <img src="B/4.jpeg" class="history-img" alt="Old Church in Fog"
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up-left">
+                    <span class="year-badge">คริสต์ศตวรรษที่ 8</span>
+                    <h2 class="text-orange mb-3">All Hallows' Eve</h2>
+                    <p>
+                        ศาสนจักรพยายามเปลี่ยนความเชื่อเดิมด้วยการกำหนดให้วันที่ 1 พฤศจิกายน เป็นวัน <strong>"All Saints' Day"</strong> หรือ "All Hallows" เพื่อระลึกถึงนักบุญ
+                    </p>
+                    <p>
+                        ดังนั้น คืนก่อนหน้านั้น (31 ต.ค.) จึงถูกเรียกว่า <strong>"All Hallows' Eve"</strong> และเพี้ยนเสียงมาจนกลายเป็น <strong>"Halloween"</strong> ในที่สุด
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 mb-5">
+        <div class="legend-box" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="B/5.jpeg" class="img-fluid rounded-circle border border-4 border-warning shadow mb-3" 
+                         style="width: 200px; height: 200px; object-fit: cover;" alt="Stingy Jack Pumpkin"
+                         onerror="this.style.display='none'; alert('อย่าลืมใส่รูป B/5.jpeg (รูปฟักทอง) นะครับ');">
+                </div>
+                <div class="col-md-8">
+                    <h2 class="text-orange">ตำนาน Stingy Jack</h2>
+                    <h5 class="text-white">กำเนิด Jack-o'-lantern</h5>
+                    <p class="mt-3">
+                        ตำนานเล่าถึงชายขี้เมาชื่อ <strong>"Stingy Jack"</strong> ผู้หลอกซาตานจนเมื่อตายไป สวรรค์ก็ไม่รับ นรกก็ไม่ต้อนรับ เขาจึงต้องร่อนเร่ไปในความมืด
+                    </p>
+                    <p>
+                        ซาตานโยนถ่านไฟจากนรกให้ก้อนหนึ่งเพื่อนำทาง แจ็คจึงใส่ถ่านนั้นลงใน <strong>หัวผักกาด (Turnip)</strong> ที่คว้านเนื้อออก และกลายเป็นตำนานปีศาจแห่งแสงไฟ
+                    </p>
+                    <div class="quote-text">
+                        "ชาวอเมริกันเปลี่ยนมาใช้ **ฟักทอง** แทน เพราะหาง่ายกว่าและแกะสลักสวยกว่าหัวผักกาด"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container text-center mb-5" data-aos="fade-up">
+        <hr class="border-secondary my-5">
+        <h4 class="text-white mb-4">อ่านเรื่องราวต่อ...</h4>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="index.html" class="btn btn-outline-secondary px-4"><i class="fas fa-arrow-left"></i> ย้อนกลับ</a>
+            <a href="modern.html" class="btn btn-warning px-4 fw-bold">ยุคปัจจุบัน <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p class="m-0 text-secondary small">© 2025 MIHW Project</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ข้อความพิมพ์หน้าโหลด
+        const loadingText = "HISTORY OF HALLOWEEN";
+        const textElement = document.getElementById('preload-text');
+        const preloader = document.getElementById('preloader');
+        let index = 0;
+
+        function typeLoadingText() {
+            if (index < loadingText.length) {
+                textElement.textContent += loadingText.charAt(index);
+                index++;
+                setTimeout(typeLoadingText, 100); 
+            } else {
+                // พิมพ์เสร็จ รอ 1 วิ แล้วจางหาย
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.body.classList.remove('loading');
+                        // เริ่ม AOS
+                        AOS.init({ offset: 120, duration: 1000, once: false });
+                    }, 800);
+                }, 1000);
+            }
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(typeLoadingText, 500);
+        });
+    </script>
+</body>
+</html>
